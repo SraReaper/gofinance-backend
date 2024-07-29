@@ -42,6 +42,7 @@ jobs:
         tar xvf migrate.linux-amd64.tar.gz
         sudo mv migrate.linux-amd64 /usr/bin/migrate
         which migrate
+
     - name: Run migrations
       run: make migrateup
 
