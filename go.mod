@@ -1,4 +1,4 @@
-module github.com/SraReaper/go-finance
+module github.com/SraReaper/gofinance-backend
 
 go 1.20
 
