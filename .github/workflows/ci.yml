@@ -10,8 +10,7 @@ jobs:
   
   test: 
     name: Test
-    row-on: ubuntu-latest
-
+    runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres:14
