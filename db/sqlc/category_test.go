@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/SraReaper/go-finance/util"
+	"github.com/SraReaper/gofinance-backend/util"
 	"github.com/stretchr/testify/require"
 )
 

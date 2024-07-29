@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/SraReaper/go-finance/util"
+	"github.com/SraReaper/gofinance-backend/util"
 	"github.com/stretchr/testify/require"
 )
 
