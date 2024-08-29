@@ -124,7 +124,7 @@ type getCategoriesRequest struct {
 // getCategories valida a URL e a categorias
 func (server *Server) getCategories(ctx *gin.Context) {
 	var request getCategoriesRequest
-	err := ctx.ShouldBindUri(&request)
+	err := ctx.ShouldBindJSON(&request)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 	}
