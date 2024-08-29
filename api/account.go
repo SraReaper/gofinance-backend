@@ -135,7 +135,7 @@ type getAccountsRequest struct {
 // getAccount valida a URL e as contas
 func (server *Server) getAccounts(ctx *gin.Context) {
 	var request getAccountsRequest
-	err := ctx.ShouldBindUri(&request)
+	err := ctx.ShouldBindJSON(&request)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 	}
