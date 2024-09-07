@@ -52,7 +52,7 @@ type getAccountRequest struct {
 // getAccount valida a URL e a conta
 func (server *Server) getAccount(ctx *gin.Context) {
 	var request getAccountRequest
-	err := ctx.ShouldBindUri(&request)
+	err := ctx.ShouldBindJSON(&request)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 	}
@@ -68,6 +68,58 @@ func (server *Server) getAccount(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK, account)
+}
+
+type getAccountReportsRequest struct {
+	UserID int32  `uri:"user_id" binding:"required"`
+	Type   string `uri:"type" binding:"required"`
+}
+
+func (server *Server) getAccountReports(ctx *gin.Context) {
+	var request getAccountReportsRequest
+	err := ctx.ShouldBindUri(&request)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, errorResponse(err))
+	}
+
+	arg := db.GetAccountsReportsParams{
+		UserID: request.UserID,
+		Type:   request.Type,
+	}
+
+	sumReports, err := server.store.GetAccountsReports(ctx, arg)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
+		return
+	}
+
+	ctx.JSON(http.StatusOK, sumReports)
+}
+
+type getAccountGraphRequest struct {
+	UserID int32  `uri:"user_id" binding:"required"`
+	Type   string `uri:"type" binding:"required"`
+}
+
+func (server *Server) getAccountGraph(ctx *gin.Context) {
+	var request getAccountGraphRequest
+	err := ctx.ShouldBindUri(&request)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, errorResponse(err))
+	}
+
+	arg := db.GetAccountsGraphParams{
+		UserID: request.UserID,
+		Type:   request.Type,
+	}
+
+	countGraph, err := server.store.GetAccountsGraph(ctx, arg)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
+		return
+	}
+
+	ctx.JSON(http.StatusOK, countGraph)
 }
 
 type deleteAccountRequest struct {
