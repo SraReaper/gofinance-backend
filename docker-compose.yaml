@@ -1,0 +1,9 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=gofinance
+      - POSTGRES_PASSWORD=postgres
+    ports:
+    - "5432:5432"
