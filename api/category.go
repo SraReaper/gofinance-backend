@@ -75,7 +75,7 @@ func (server *Server) deleteCategory(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 	}
 
-	err = server.store.DeleteCategory(ctx, request.ID)
+	err = server.store.DeleteCategories(ctx, request.ID)
 	if err != nil {
 
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
@@ -100,13 +100,13 @@ func (server *Server) updateCategory(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 	}
 
-	arg := db.UpdateCategoryParams{
+	arg := db.UpdateCategoriesParams{
 		ID:          request.ID,
 		Title:       request.Title,
 		Description: request.Description,
 	}
 
-	category, err := server.store.UpdateCategory(ctx, arg)
+	category, err := server.store.UpdateCategories(ctx, arg)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 	}
