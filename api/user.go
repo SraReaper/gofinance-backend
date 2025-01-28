@@ -10,7 +10,6 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"golang.org/x/crypto/bcrypt"
-	_ "golang.org/x/crypto/bcrypt"
 )
 
 type createUserRequest struct {
