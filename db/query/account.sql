@@ -38,9 +38,9 @@ AND
 AND
   LOWER(a.description) LIKE CONCAT('%', LOWER(sqlc.arg('description')::text), '%')
 AND
-  a.category_id = COALESCE(@category_id, a.category_id)
+  a.category_id = COALESCE(sqlc.narg('category_id'), a.category_id)
 AND
-  a.date = COALESCE(@date, a.date);
+  a.date = COALESCE(sqlc.narg('date'), a.date);
 
 -- name: GetAccountsReports :one
 SELECT SUM(value) AS sum_value FROM accounts WHERE user_id = $1 and type = $2;
