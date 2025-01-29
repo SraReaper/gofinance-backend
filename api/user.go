@@ -27,7 +27,7 @@ func (server *Server) createUser(ctx *gin.Context) {
 	}
 
 	hashedInput := sha512.Sum512([]byte(request.Password))
-	trimmedHash := bytes.Trim(hashedInput[:], "/x00")
+	trimmedHash := bytes.Trim(hashedInput[:], "\x00")
 	preparedPassword := string(trimmedHash)
 	passwordHashInBytes, err := bcrypt.GenerateFromPassword([]byte(preparedPassword), bcrypt.DefaultCost)
 	if err != nil {
