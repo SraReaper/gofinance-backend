@@ -6,6 +6,7 @@ import (
 	"time"
 
 	db "github.com/SraReaper/gofinance-backend/db/sqlc"
+	"github.com/SraReaper/gofinance-backend/util"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,6 +22,11 @@ type createAccountRequest struct {
 
 // createAccount para criar uma conta
 func (server *Server) createAccount(ctx *gin.Context) {
+	errOnValiteToken := util.GetTokenInHeaderAndVerify(ctx)
+	if errOnValiteToken != nil {
+		return
+	}
+
 	var request createAccountRequest
 	err := ctx.ShouldBindJSON(&request)
 	if err != nil {
@@ -65,6 +71,11 @@ type getAccountRequest struct {
 
 // getAccount valida a URL e a conta
 func (server *Server) getAccount(ctx *gin.Context) {
+	errOnValiteToken := util.GetTokenInHeaderAndVerify(ctx)
+	if errOnValiteToken != nil {
+		return
+	}
+
 	var request getAccountRequest
 	err := ctx.ShouldBindJSON(&request)
 	if err != nil {
@@ -90,6 +101,11 @@ type getAccountReportsRequest struct {
 }
 
 func (server *Server) getAccountReports(ctx *gin.Context) {
+	errOnValiteToken := util.GetTokenInHeaderAndVerify(ctx)
+	if errOnValiteToken != nil {
+		return
+	}
+
 	var request getAccountReportsRequest
 	err := ctx.ShouldBindUri(&request)
 	if err != nil {
@@ -116,6 +132,11 @@ type getAccountGraphRequest struct {
 }
 
 func (server *Server) getAccountGraph(ctx *gin.Context) {
+	errOnValiteToken := util.GetTokenInHeaderAndVerify(ctx)
+	if errOnValiteToken != nil {
+		return
+	}
+
 	var request getAccountGraphRequest
 	err := ctx.ShouldBindUri(&request)
 	if err != nil {
@@ -142,6 +163,11 @@ type deleteAccountRequest struct {
 
 // deleteAccount deleta a conta
 func (server *Server) deleteAccount(ctx *gin.Context) {
+	errOnValiteToken := util.GetTokenInHeaderAndVerify(ctx)
+	if errOnValiteToken != nil {
+		return
+	}
+
 	var request deleteAccountRequest
 	err := ctx.ShouldBindUri(&request)
 	if err != nil {
@@ -168,6 +194,11 @@ type updateAccountRequest struct {
 
 // updateAccount para atualizar uma conta
 func (server *Server) updateAccount(ctx *gin.Context) {
+	errOnValiteToken := util.GetTokenInHeaderAndVerify(ctx)
+	if errOnValiteToken != nil {
+		return
+	}
+
 	var request updateAccountRequest
 	err := ctx.ShouldBindJSON(&request)
 	if err != nil {
@@ -200,6 +231,11 @@ type getAccountsRequest struct {
 
 // getAccount valida a URL e as contas
 func (server *Server) getAccounts(ctx *gin.Context) {
+	errOnValiteToken := util.GetTokenInHeaderAndVerify(ctx)
+	if errOnValiteToken != nil {
+		return
+	}
+
 	var request getAccountsRequest
 	err := ctx.ShouldBindJSON(&request)
 	if err != nil {

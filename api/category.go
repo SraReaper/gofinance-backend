@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	db "github.com/SraReaper/gofinance-backend/db/sqlc"
+	"github.com/SraReaper/gofinance-backend/util"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,6 +18,11 @@ type createCategoryRequest struct {
 
 // createCategory para criar um usuário
 func (server *Server) createCategory(ctx *gin.Context) {
+	errOnValiteToken := util.GetTokenInHeaderAndVerify(ctx)
+	if errOnValiteToken != nil {
+		return
+	}
+
 	var request createCategoryRequest
 	err := ctx.ShouldBindJSON(&request)
 	if err != nil {
@@ -44,6 +50,11 @@ type getCategoryRequest struct {
 
 // getCategory valida a URL e a categoria
 func (server *Server) getCategory(ctx *gin.Context) {
+	errOnValiteToken := util.GetTokenInHeaderAndVerify(ctx)
+	if errOnValiteToken != nil {
+		return
+	}
+
 	var request getCategoryRequest
 	err := ctx.ShouldBindUri(&request)
 	if err != nil {
@@ -69,6 +80,11 @@ type deleteCategoryRequest struct {
 
 // deleteCategory deleta a categoria
 func (server *Server) deleteCategory(ctx *gin.Context) {
+	errOnValiteToken := util.GetTokenInHeaderAndVerify(ctx)
+	if errOnValiteToken != nil {
+		return
+	}
+
 	var request deleteCategoryRequest
 	err := ctx.ShouldBindUri(&request)
 	if err != nil {
@@ -94,6 +110,10 @@ type updateCategoryRequest struct {
 
 // updateCategory para atualizar um usuário
 func (server *Server) updateCategory(ctx *gin.Context) {
+	errOnValiteToken := util.GetTokenInHeaderAndVerify(ctx)
+	if errOnValiteToken != nil {
+		return
+	}
 	var request updateCategoryRequest
 	err := ctx.ShouldBindJSON(&request)
 	if err != nil {
@@ -123,6 +143,11 @@ type getCategoriesRequest struct {
 
 // getCategories valida a URL e a categorias
 func (server *Server) getCategories(ctx *gin.Context) {
+	errOnValiteToken := util.GetTokenInHeaderAndVerify(ctx)
+	if errOnValiteToken != nil {
+		return
+	}
+
 	var request getCategoriesRequest
 	err := ctx.ShouldBindJSON(&request)
 	if err != nil {
