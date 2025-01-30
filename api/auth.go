@@ -48,6 +48,7 @@ func (server *Server) login(ctx *gin.Context) {
 	err = bcrypt.CompareHashAndPassword(hashTextInBytes, plainTextInBytes)
 	if err != nil {
 		ctx.JSON(http.StatusUnauthorized, errorResponse(err))
+		return
 	}
 
 	expirationTime := time.Now().Add(5 * time.Minute)
