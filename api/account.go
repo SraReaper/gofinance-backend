@@ -221,12 +221,12 @@ func (server *Server) updateAccount(ctx *gin.Context) {
 }
 
 type getAccountsRequest struct {
-	UserID      int32     `json:"user_id" binding:"required"`
-	Type        string    `json:"type" binding:"required"`
-	CategoryID  int32     `json:"category_id"`
-	Title       string    `json:"title"`
-	Description string    `json:"description"`
-	Date        time.Time `json:"date"`
+	UserID      int32     `form:"user_id" json:"user_id" binding:"required"`
+	Type        string    `form:"type" json:"type" binding:"required"`
+	CategoryID  int32     `form:"category_id" json:"category_id"`
+	Title       string    `form:"title" json:"title"`
+	Description string    `form:"description" json:"description"`
+	Date        time.Time `form:"date" json:"date"`
 }
 
 // getAccount valida a URL e as contas
@@ -237,7 +237,7 @@ func (server *Server) getAccounts(ctx *gin.Context) {
 	}
 
 	var request getAccountsRequest
-	err := ctx.ShouldBindJSON(&request)
+	err := ctx.ShouldBindQuery(&request)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
