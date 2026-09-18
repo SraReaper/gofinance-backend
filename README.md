@@ -1,1 +1,1 @@
-Essa é a parte de backend do projeto Finance, um site de finanças.
+This is the backend part of the Finance project, a finance website.
